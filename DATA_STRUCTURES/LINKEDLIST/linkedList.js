@@ -141,9 +141,32 @@ class LinkedList {
         return false;
     }
 
+    print(){
+        let str = ''
+        let curr = this.head
+        while(curr) {
+            str += `${curr.value} `
+            curr = curr.next
+        }
+
+    }
+
 }
 
-let list = new LinkedList()
-list.append(34)
-list.prepend(54)
-console.log(list)
+// let list = new LinkedList()
+// list.append(34)
+// list.prepend(54)
+// console.log(list)
+
+//removeValue
+//reverse
+//insertvalue
+//removeIndex
+
+function Palindrome(str) {
+    let list = new LinkedList();
+    for(let i = 0 ; i < str.length ; i++){
+        list.append(str[i])
+    }
+    //lis
+}
