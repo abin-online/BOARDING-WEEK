@@ -1,4 +1,4 @@
-# Bubble Sort Algorithm
+# 1. Bubble Sort Algorithm
 
 ## 🛠 Introduction
 Bubble Sort is a simple comparison-based sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The process continues until the list is sorted.
@@ -51,7 +51,7 @@ The optimized version of Bubble Sort stops early if no swaps happen in a pass, m
 
 Bubble Sort is a great learning tool but is not used in real-world applications due to its inefficiency. Faster algorithms like **Merge Sort** and **Quick Sort** are preferred.
 
-# Insertion Sort Algorithm
+# 2. Insertion Sort Algorithm
 
 ## 🛠 Introduction
 Insertion Sort is a simple and efficient comparison-based sorting algorithm that builds the sorted array one element at a time. It works similarly to how we sort playing cards in our hands.
