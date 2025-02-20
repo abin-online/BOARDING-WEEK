@@ -50,3 +50,54 @@ The optimized version of Bubble Sort stops early if no swaps happen in a pass, m
 - When learning sorting algorithms, as it provides a good conceptual understanding.
 
 Bubble Sort is a great learning tool but is not used in real-world applications due to its inefficiency. Faster algorithms like **Merge Sort** and **Quick Sort** are preferred.
+
+# Insertion Sort Algorithm
+
+## 🛠 Introduction
+Insertion Sort is a simple and efficient comparison-based sorting algorithm that builds the sorted array one element at a time. It works similarly to how we sort playing cards in our hands.
+
+## 🛠 How Insertion Sort Works
+1. Start from the second element (index 1) and compare it with the previous elements.
+2. Shift elements that are greater than the key to the right.
+3. Insert the key at its correct position.
+4. Repeat the process for all elements until the array is sorted.
+
+## 📌 Key Takeaways
+✅ Simple to implement and efficient for small datasets  
+✅ Works well with nearly sorted data (Adaptive: O(n) in best case)  
+✅ Stable sorting algorithm (preserves the relative order of equal elements)  
+✅ Inefficient for large datasets (O(n²) in worst case)  
+
+## 📝 Example Implementation in JavaScript
+```javascript
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+}
+
+console.log(insertionSort([3, 65, 9, -3, 23.2])); // Output: [-3, 3, 9, 23.2, 65]
+```
+
+## 🚀 Optimized Version
+Insertion Sort is inherently adaptive, meaning it performs well on nearly sorted data. No additional optimizations are typically required.
+
+## 📚 Time Complexity
+- **Worst Case (Reversed Order):** O(n²)
+- **Best Case (Already Sorted):** O(n)
+- **Average Case:** O(n²)
+
+## 📌 When to Use Insertion Sort?
+- When sorting small datasets.
+- When the dataset is nearly sorted.
+- When a stable sorting algorithm is needed.
+- When minimal memory usage is required (works in-place).
+
+Insertion Sort is a great learning tool and is sometimes used in practice for small or nearly sorted datasets. However, for large datasets, more efficient algorithms like **Merge Sort** and **Quick Sort** are preferred.
