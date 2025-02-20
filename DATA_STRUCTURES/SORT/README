@@ -1,5 +1,8 @@
 # Bubble Sort Algorithm
 
+## 🛠 Introduction
+Bubble Sort is a simple comparison-based sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The process continues until the list is sorted.
+
 ## 🛠 How Bubble Sort Works
 1. Start from the first element and compare it with the next one.
 2. If the next element is smaller, swap them.
@@ -40,5 +43,10 @@ The optimized version of Bubble Sort stops early if no swaps happen in a pass, m
 ## 📚 Time Complexity
 - **Worst Case (Reversed Order):** O(n²)
 - **Best Case (Already Sorted + Optimization):** O(n)
+
+## 📌 When to Use Bubble Sort?
+- When the dataset is small.
+- When the dataset is already nearly sorted.
+- When learning sorting algorithms, as it provides a good conceptual understanding.
 
 Bubble Sort is a great learning tool but is not used in real-world applications due to its inefficiency. Faster algorithms like **Merge Sort** and **Quick Sort** are preferred.
