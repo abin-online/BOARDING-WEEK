@@ -2,7 +2,7 @@
 
 const User = {
     name: 'Abin',
-    place: 'CTK'
+    place: 'Chettikulangara'
 }
 
 const handler = {
