@@ -82,8 +82,34 @@ function firstNonRepeating(str) {
     }
 }
 
-console.log(firstNonRepeating("aabccdeff"));
+// console.log(firstNonRepeating("aabccdeff"));
 
 
+//["eat", "tea", "tan", "ate", "nat", "bat"]
+//group anagrams
+
+const arr = ["eat", "tea", "tan", "ate", "nat", "bat"];
+
+function groupAnagrams(arr) { 
+    const map = new hashTable(3);
+
+    for(let char of arr) {
+        let sortedWord = char.split('').sort().join('')
+        if(map.has(sortedWord)) {
+            let existing = map.get(sortedWord);
+            existing.push(char)
+        }else{
+            map.set(sortedWord,[])
+        }
+    }
+
+    for(let bucket of map.table){
+        console.log(bucket);
+    }
+    //console.log(map.table);
+    
+}
+
+groupAnagrams(arr);
 
 

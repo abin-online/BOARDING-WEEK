@@ -10,6 +10,7 @@ const Todo = () => {
     const [editedValue, setEditedValue] = useState('');
 
     useEffect(() => {
+        console.log('Todo load aayiiii_____________')
         const todo = localStorage.getItem('todo');
         if (todo) {
             setToDoList(JSON.parse(todo));

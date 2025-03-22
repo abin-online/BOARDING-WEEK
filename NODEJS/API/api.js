@@ -8,6 +8,24 @@ const users = [{
 
 app.use(express.json())
 
+//middleware to block GET req
+
+const blockGET = (req, res, next)=> {
+    try {
+        if(req.method == 'GET'){
+            res.status(403).json({message: 'GET BLOCKED'})
+            return
+        }
+        next()
+        console.log(req.method)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+app.use(blockGET)
+
+
 app.get('/', (req, res) => {
     res.json({ users })
 })

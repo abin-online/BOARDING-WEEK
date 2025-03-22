@@ -43,7 +43,7 @@ class LinkedList {
         [this.tail, this.head]
     }
 }
-w
+
 
 const list = new LinkedList();
 list.append(1)

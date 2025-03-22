@@ -45,7 +45,7 @@ class Graph {
         while(queue.length) {
             let currentVertex = queue.shift();
             result.push(currentVertex);
-            this.adjacenyList[vertex].forEach(neighbour => {
+            this.adjacenyList[currentVertex].forEach(neighbour => {
                 if(!visited[neighbour]) {
                     visited[neighbour] = true
                     queue.push(neighbour)
