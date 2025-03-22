@@ -55,7 +55,7 @@ class Tree {
         let count = 0;
 
         if ((!root.left && root.right) || (root.left && !root.right)) {
-            count = 1;
+            count++;
         }
 
 
@@ -80,16 +80,103 @@ class Tree {
         return count
     }
 
-    countNodesTwoChildren(root = this.root){
-        if(!root){
+    countNodesWithTwoChildren(root = this.root) {
+        if (!root) {
             return 0
         }
         let count = 0;
 
-        if(!root.left && !root.right) {
-            
+        if (root.left && root.right) {
+            count++
         }
+
+        count += this.countNodesWithTwoChildren(root.left);
+        count += this.countNodesWithTwoChildren(root.right)
+
+        return count
     }
+
+    sumOfAllNodes(root = this.root) {
+        if (!root) {
+            return 0
+        }
+
+        let sum = 0;
+
+        if (root) {
+            sum += root.value
+        }
+        sum += this.sumOfAllNodes(root.left);
+        sum += this.sumOfAllNodes(root.right)
+
+        return sum
+    }
+
+    sumOfLeafNodes(root = this.root) {
+        if (!root) {
+            return 0
+        }
+
+        let sum = 0;
+
+        if (!root.left && !root.right) {
+            sum += root.value
+        }
+
+        sum += this.sumOfLeafNodes(root.left);
+        sum += this.sumOfAllNodes(root.right)
+    }
+
+    countOfNodeWithOnlyRightChild(root = this.root) {
+        if (!root) {
+            return 0
+        }
+
+        let count = 0;
+        if ((!root.left && root.right)) {
+            count++
+        }
+
+        count += this.countOfNodeWithOnlyRightChild(root.left)
+        count += this.countOfNodeWithOnlyRightChild(root.right)
+
+        return count
+    }
+
+    kthLargest(k) {
+        const result = this.findKthLargest();
+        return result[k - 1]
+    }
+
+    findKthLargest(root = this.root, result = []) {
+        if (root) {
+            this.findKthLargest(root.right, result)
+            result.push(root.value)
+            this.findKthLargest(root.left, result);
+        }
+        return result
+    }
+
+    heightOfTree(root = this.root) {
+        if(!root) {
+            return -1
+        }
+
+        return Math.max(this.heightOfTree(root.left), this.heightOfTree(root.right)) + 1;
+    }
+
+    isBalanced(root = this.root){
+        if(!root) {
+            return true;
+        }
+
+        if(Math.abs(this.heightOfTree(root.left) - this.heightOfTree(root.right)) > 1){
+            return false
+        } 
+
+        return this.isBalanced(root.left) && this.isBalanced(root.right)
+    }
+
 }
 
 const tree = new Tree()
@@ -102,6 +189,13 @@ tree.insert(7)
 
 //tree.preOrder()
 
-console.log(tree)
+//console.log(tree)
 
-console.log(tree.countLeafNodes())
+//console.log(tree.inOrder())
+
+
+console.log('3rd largest ')
+console.log(tree.kthLargest(3))
+console.log('heightOfTree ')
+console.log(tree.heightOfTree())
+//console.log(tree.countLeafNodes())
