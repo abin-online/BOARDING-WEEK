@@ -158,23 +158,65 @@ class Tree {
     }
 
     heightOfTree(root = this.root) {
-        if(!root) {
+        if (!root) {
             return -1
         }
 
         return Math.max(this.heightOfTree(root.left), this.heightOfTree(root.right)) + 1;
     }
 
-    isBalanced(root = this.root){
-        if(!root) {
+    isBalanced(root = this.root) {
+        if (!root) {
             return true;
         }
 
-        if(Math.abs(this.heightOfTree(root.left) - this.heightOfTree(root.right)) > 1){
+        if (Math.abs(this.heightOfTree(root.left) - this.heightOfTree(root.right)) > 1) {
             return false
-        } 
+        }
 
         return this.isBalanced(root.left) && this.isBalanced(root.right)
+    }
+
+    diameterOfTree(root = this.root) {
+        if (!root) {
+            return 0
+        }
+
+        //height of left & right subtrees
+        let leftHeight = this.heightOfTree(root.left);
+        let rightHeight = this.heightOfTree(root.right);
+
+        //diameter passing through root
+        let rootDiameter = leftHeight + rightHeight;
+
+        //diameter in left & right subtrees
+        let leftDiameter = this.diameterOfTree(root.left);
+        let rightDiameter = this.diameterOfTree(root.right);
+
+        //maximum diameter
+        return Math.max(rootDiameter, leftDiameter, rightDiameter)
+    }
+
+    sortedArrayToBST(nums) {
+        if (!nums.length) {
+            return null
+        }
+
+        const buildBST = (left, right) => {
+            if (left > right) {
+                return null
+            }
+
+            let middle = Math.floor((left + right)/2);
+            const root = new Node(nums[middle]);
+            root.left = buildBST(left, middle - 1);
+            root.right = buildBST(middle + 1, right)
+
+            return root
+        }
+
+        return buildBST(0, nums.length - 1);
+        
     }
 
 }
