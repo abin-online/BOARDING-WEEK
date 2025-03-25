@@ -5,7 +5,7 @@ class Graph {
 
     addVertex(vertex){
         if(!this.adjacenyList[vertex]){
-            this.addVertex[vertex] = new Set()
+            this.adjacenyList[vertex] = new Set()
         }
     }
 
@@ -54,4 +54,46 @@ class Graph {
         }
         return result;
     }
+
+    hasCycle() {
+        const visited = {};
+
+        const dfs = (node, parent)=> {
+            visited[node] = true;
+            for(let neighbour of this.adjacenyList[node]){
+                if(!visited[neighbour]){
+                    if(dfs(neighbour, node)){
+                        return true
+                    }
+                }else if(neighbour !== parent) {
+                    return true;
+                }
+            }
+            return false
+        }
+
+        for(let vertex in this.adjacenyList) {
+            if(!visited[vertex]) {
+                if(dfs(vertex, null)) {
+                    return true
+                }
+            }
+        }
+        return false;
+    }
 }
+
+const graph = new Graph()
+
+graph.addVertex('A')
+graph.addVertex('B')
+graph.addVertex('C')
+graph.addVertex('D');
+
+graph.addEdge('A', 'B');
+graph.addEdge('B', 'C');
+graph.addEdge('C', 'D');
+graph.addEdge('D', 'A');
+
+console.log(graph.hasCycle())
+
