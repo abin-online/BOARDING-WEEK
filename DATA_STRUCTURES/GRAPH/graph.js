@@ -1,42 +1,42 @@
 class Graph {
     constructor() {
-        this.adjacenyList = {}
+        this.adjacentList = {}
     }
 
     addVertex(vertex){
-        if(!this.adjacenyList[vertex]){
-            this.adjacenyList[vertex] = new Set()
+        if(!this.adjacentList[vertex]){
+            this.adjacentList[vertex] = new Set()
         }
     }
 
     addEdge(vertex1, vertex2){
         this.addVertex(vertex1)
         this.addVertex(vertex2)
-        this.adjacenyList[vertex1].add(vertex2)
-        this.adjacenyList[vertex2].add(vertex1)
+        this.adjacentList[vertex1].add(vertex2)
+        this.adjacentList[vertex2].add(vertex1)
     }
 
     display() {
-        for(let i in this.adjacenyList) {
-            console.log(`${i} --> ${this.adjacenyList[i]}`);
+        for(let i in this.adjacentList) {
+            console.log(`${i} --> ${this.adjacentList[i]}`);
         }
     }
 
     hasEdge(vertex1, vertex2) {
-        return this.adjacenyList[vertex1]?.has(vertex2)
+        return this.adjacentList[vertex1]?.has(vertex2)
     }
 
     removeEdge(vertex1, vertex2){
-        this.adjacenyList[vertex1].delete(vertex2)
-        this.adjacenyList[vertex2].delete(vertex1)
+        this.adjacentList[vertex1].delete(vertex2)
+        this.adjacentList[vertex2].delete(vertex1)
     }
 
     removeVertex(vertex) {
-        if(!this.adjacenyList[vertex]) return;
-        this.adjacenyList[vertex].forEach(adjacentVertex => {
+        if(!this.adjacentList[vertex]) return;
+        this.adjacentList[vertex].forEach(adjacentVertex => {
             this.removeEdge(adjacentVertex, vertex);
         });
-        delete this.adjacenyList[vertex]
+        delete this.adjacentList[vertex]
     }
 
     breadthFirstSearch(start) {
@@ -45,7 +45,7 @@ class Graph {
         while(queue.length) {
             let currentVertex = queue.shift();
             result.push(currentVertex);
-            this.adjacenyList[currentVertex].forEach(neighbour => {
+            this.adjacentList[currentVertex].forEach(neighbour => {
                 if(!visited[neighbour]) {
                     visited[neighbour] = true
                     queue.push(neighbour)
@@ -60,7 +60,7 @@ class Graph {
 
         const dfs = (node, parent)=> {
             visited[node] = true;
-            for(let neighbour of this.adjacenyList[node]){
+            for(let neighbour of this.adjacentList[node]){
                 if(!visited[neighbour]){
                     if(dfs(neighbour, node)){
                         return true
@@ -72,7 +72,7 @@ class Graph {
             return false
         }
 
-        for(let vertex in this.adjacenyList) {
+        for(let vertex in this.adjacentList) {
             if(!visited[vertex]) {
                 if(dfs(vertex, null)) {
                     return true
