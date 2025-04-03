@@ -686,19 +686,321 @@
 // export default App;
 
 
-import React, { useState } from 'react'
-import CheckBox from './REVIEWW/CheckBox'
-import Context from './REVIEWW/Context'
+// import React, { useState } from 'react'
+// import CheckBox from './REVIEWW/CheckBox'
+// import Context from './REVIEWW/Context'
+
+// const App = () => {
+
+//   const [toggle, setToggle] = useState(false);
+//   return (
+//     <div>
+//       <Context.Provider value={toggle}>
+//         <button onClick={() => setToggle(prev => !prev)}> TOGGLE </button>
+//         <CheckBox/>
+//       </Context.Provider>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React from 'react'
+// import MouseTracker from './render_props/MousePosition'
+
+// const App = () => {
+//   return (
+//     <div>
+//       <MouseTracker render={(position)=> {
+//         return <h1>X: {position.x} Y: {position.y}</h1>
+//       }}/>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React, { useMemo, useState } from 'react'
+
+// const App = () => {
+
+//   const [number, setNumber] = useState(0);
+//   const [dark, setDark] = useState(false)
+
+//   const slowFunction = (number)=> {
+//     const start = new Date();
+//         for(let i = 0 ; i < 100000000; i++){
+
+//         }
+//         console.log('rendered !', new Date() - start)
+//         return number * 2;
+
+//   }
+
+//   const doubleNumber = useMemo(()=> slowFunction(number), [number])
+
+//   const themeStyle = {
+//     backgroundColor: dark ? 'black' : 'white',
+//     color: dark ? 'white' : 'black',
+//     padding: '30px',
+//     transition: '0.5s',
+//     borderRadius :'2px'
+//   };
+//   return (
+//     <div style={themeStyle}>
+//         <p>{doubleNumber}</p>
+//         <input type='number' onChange={(e)=> setNumber(e.target.value)} value={number}/>
+//         <button onClick={()=> setDark(prev => !prev)}>TOGGLE</button>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+// import React, { useEffect, useState } from 'react'
+
+// const App = () => {
+
+//   const [count, setCount] = useState(0)
+//   const [flag, setFlag] = useState(true)
+
+
+//   useEffect(() => {
+//     console.log("Setting Interval...");
+//     const timer = setInterval(() => {
+//       setCount(prev => prev + 1);
+//     }, 1000);
+
+//     return () => {
+//       console.log("Clearing Interval...");
+//       clearInterval(timer); // Cleanup function
+//       console.log("Timer is cleared");
+//     };
+//   }, [flag]);
+
+//   return( <div>
+//     Count: {flag && count}
+//     <button onClick={()=> setFlag(prev => !prev)}>UNMOUNT</button>
+//     </div>);
+// }
+
+// export default App
+
+// import React, { useCallback, useState } from 'react'
+// import List from './USECALLBACK/List';
+
+// const App = () => {
+
+//   const [number, setNumber] = useState(0)
+//   const [dark, setDark] = useState(false);
+
+//   const getNumber = useCallback(()=> {
+//     return [number + 1, number + 2, number + 3]
+//   }, [number])
+
+//   const themeStyle = {
+//     backgroundColor : dark ? 'black' : 'white',
+//     color: dark ? 'white' : 'black'
+//   }
+
+//   return (
+//     <div style={themeStyle}>
+//         <input type='number' onChange={(e)=> setNumber(e.target.value)} />
+//         <button onClick={()=> setDark((prev)=> !prev)}>THEME</button>
+//         <List getNumber={getNumber}/>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React, { useState } from 'react'
+
+// const App = () => {
+
+
+
+//   const [input, setInput] = useState({
+//     name: '',
+//     place: ''
+//   })
+//   const [show, setShow] = useState(false)
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     console.log(name, value)
+//     setInput((prev) => {
+//       return {
+//         ...prev,
+//         [name]: value
+//       }
+//     })
+//   }
+
+//   const handleClick = (e) => {
+//     e.preventDefault()
+
+//     setShow((prev) => true)
+//   }
+
+//   return (
+//     <div>
+//       <form onSubmit={handleClick}>
+
+//         Name :  <input type='text' value={input.name} name='name' onChange={handleChange} />
+//         <br />
+//         Place :   <input type='text' value={input.place} name='place' onChange={handleChange} />
+//         <br />
+//         <button> submit</button>
+//       </form>
+//       {show && (<>
+//         <h1>Name : {input.name}</h1>
+//         <h1>Place : {input.place}</h1>
+//       </>)}
+
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+//using useRef 
+
+// import React, { useRef, useState } from 'react'
+
+// const App = () => {
+
+//   const nameRef = useRef(null);
+
+//   const [name, setName] = useState('')
+//   const [show, setShow] = useState(false)
+
+//   const handleSubmit = (e)=> {
+//     e.preventDefault()
+//     setShow(true)
+//     setName(nameRef.current.value)
+//   }
+
+//   return (
+//     <div>
+//       <form onSubmit={handleSubmit}>
+//       <input ref={nameRef}/>
+//     <button type='submit'>SUBMIT</button>
+//       </form>
+
+//       {
+//         show && <>
+//         Name : <p>{name}</p>
+//         </>
+
+//       }
+//     </div>
+//   )
+// }
+
+// export default App
+
+// import React from 'react'
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+// import CheckBox from './REVIEWW/CheckBox'
+// import Todo from './Todo'
+
+// const App = () => {
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path='/' element={<CheckBox />} />
+//         <Route path='/todo' element={<Todo />} />
+//       </Routes>
+//     </Router>
+//   )
+// }
+
+// export default App
+
+// import React, { useMemo, useState } from 'react'
+
+// const App = () => {
+
+
+//   const [number, setNumber] = useState(0)
+
+//   const [dark, setDark] = useState(false)
+
+//   const slowFunction = (number)=> {
+//     for(let i = 0 ; i < 1000; i++){
+
+//     }
+
+//     return number * 2
+//   }
+  
+
+//   const double = useMemo(()=> {
+//     console.log('renderinggg')
+//     return slowFunction(number)
+//   }, [number])
+    
+
+//   const themeStyle = {
+//     backgroundColor : dark ? 'black' : 'white',
+//     color : dark ? 'white' : 'black'
+//   }
+  
+//   return (
+//     <div style={themeStyle}>
+//           <p>{double}</p>
+//           <input type='number' onChange={(e)=> setNumber(e.target.value)} />
+//           <button onClick={()=>setDark((prev) => !prev)}>TOGGLE</button>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+// import React, { createContext, useState } from 'react'
+// import ChildToParent from './ChildToParent'
+
+// export const InputContext = createContext()
+
+
+
+// const App = () => {
+//   const [count, setCount] = useState(0)
+
+//   const handleChange = ()=> {
+//      setCount((prev)=> prev+1)
+//   }
+
+//   return (
+//     <InputContext.Provider value={{count, handleChange}}>
+//       <ChildToParent/>
+//     </InputContext.Provider>
+//   )
+// }
+
+// export default App
+
+import React from 'react'
+import UseInput from './CustomHooks/UseInput'
 
 const App = () => {
 
-  const [toggle, setToggle] = useState(false);
+  const name = UseInput('');
   return (
     <div>
-      <Context.Provider value={toggle}>
-        <button onClick={() => setToggle(prev => !prev)}> TOGGLE </button>
-        <CheckBox/>
-      </Context.Provider>
+      <input type='text' {...name}/>
+      <p>{name.value}</p>
     </div>
   )
 }

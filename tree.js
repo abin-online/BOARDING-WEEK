@@ -219,6 +219,38 @@ class Tree {
         
     }
 
+    largest(root = this.root) {
+        while(!root.right) {
+            root = root.right
+        }
+
+        return root.value
+    }
+
+    secondLargest(root = this.root){
+        if((!root) || (!root.left && !root.right)) {
+            return null
+        }
+
+        let prev = null;
+
+        const findLargest = ()=> {
+            if(!root.right){
+                return root
+            }
+                prev = root;
+                return largest(root.right);
+        }
+
+        let largest = findLargest(root);
+
+        if(largest.left){
+            return findLargest(largest.left).value
+        }
+
+        return prev.value
+    }
+
 }
 
 const tree = new Tree()
@@ -227,6 +259,8 @@ tree.insert(10)
 tree.insert(5)
 tree.insert(15)
 tree.insert(7)
+
+console.log('largest',tree.largest())
 
 
 //tree.preOrder()

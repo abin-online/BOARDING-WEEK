@@ -3,7 +3,7 @@ import ComponentContext from './Context'
 
 const Component4 = () => {
 
-    const user = useContext(ComponentContext)
+  const user = useContext(ComponentContext)
   return (
     <div>
       <h1>Component4</h1>

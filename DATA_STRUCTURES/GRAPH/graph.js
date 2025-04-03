@@ -81,6 +81,32 @@ class Graph {
         }
         return false;
     }
+
+    hasCycle() {
+        const visited = {}
+
+        const dfs = (node, parent)=> {
+            visited[node] = true;
+            for(let neighbour of this.adjacentList[node]){
+                if(!visited[neighbour]){
+                    if(dfs(node, neighbour)){
+                        return true
+                    }
+                }else if(parent != node){
+                    return true
+                }
+            }
+        }
+        for(let vertex in this.adjacentList){
+            if(!visited[vertex]){
+                if(dfs(vertex, null)) {
+                    return true
+                }
+            }
+        }
+
+        return false
+    }
 }
 
 const graph = new Graph()

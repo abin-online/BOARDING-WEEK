@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import Context from './Context'
+import { Link } from 'react-router-dom'
 
 const CheckBox = () => {
 
@@ -8,6 +9,8 @@ const CheckBox = () => {
   return (
     <div>
       <input type='checkbox' checked={data} />
+      <br/>
+      <Link to='todo'>TODO</Link>
     </div>
   )
 }
