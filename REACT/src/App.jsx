@@ -941,19 +941,19 @@
 
 //     return number * 2
 //   }
-  
+
 
 //   const double = useMemo(()=> {
 //     console.log('renderinggg')
 //     return slowFunction(number)
 //   }, [number])
-    
+
 
 //   const themeStyle = {
 //     backgroundColor : dark ? 'black' : 'white',
 //     color : dark ? 'white' : 'black'
 //   }
-  
+
 //   return (
 //     <div style={themeStyle}>
 //           <p>{double}</p>
@@ -991,16 +991,144 @@
 
 // export default App
 
+// import React from 'react'
+// import UseInput from './CustomHooks/UseInput'
+
+// const App = () => {
+
+//   const name = UseInput('');
+//   return (
+//     <div>
+//       <input type='text' {...name}/>
+//       <p>{name.value}</p>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React, { useCallback, useEffect, useState } from 'react'
+
+// const Child = ({getItems}) => {
+
+//   useEffect(()=> {
+//     console.log(' re created')
+//   },[getItems])
+
+//   return (
+//     <div>
+//         {getItems().map((x)=> {
+//           return <p>{x}</p>
+//         })}
+//     </div>
+//   )
+// }
+
+
+// const App = () => {
+
+//   const getItems = useCallback(()=> {
+//     return [11, 12, 13]
+//   },[])
+
+//   const  [flag, setFlag] = useState(false)
+//   return (
+//     <div>
+//         <Child getItems={getItems} />
+//         <button onClick={()=> setFlag((prev)=> !prev)}>{flag ? 'Hiii' : 'Hello'}</button>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React, { useMemo, useState } from 'react'
+
+// const App = () => {
+
+//   const [dark, setDark] = useState(false)
+
+
+//   const theme = {
+//     backgroundColor : dark ? 'black' : 'white',
+//     color : dark ? 'white' : 'black'
+//   }
+
+//   const increment = useMemo(()=> {
+//     console.log('Re rendered')
+//     for(let i = 0 ; i < 100000000; i++) {
+
+//     }
+//     return 100
+//   }, [])
+
+//   return (
+//     <div style={theme}>
+//       <p> USEMEMO EXAMPLE</p>
+//           <p>{increment}</p>
+//           <button onClick={()=> setDark(prev => !prev)}>TOGGLE</button>
+
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React, { useEffect, useState } from 'react'
+
+// const App = () => {
+
+//   const [count, setCount] = useState(0)
+//   const [incrementing, setIncrementing] = useState(true)
+
+//   useEffect(() => {
+//     const Interval = setInterval(() => {
+//       setCount((prev) => {
+//         if (prev == 10) {
+//           setIncrementing(false); 
+//         } else if (prev == 0) {
+//           setIncrementing(true)
+//           return prev + 1
+//         }
+//         return incrementing ? prev + 1 : prev - 1
+//       })
+
+//     }, 1000);
+
+//     return () => clearInterval(Interval)
+//   }, [incrementing])
+
+//   return (
+//     <div>
+//       <p>{count}</p>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
 import React from 'react'
-import UseInput from './CustomHooks/UseInput'
+import { useDispatch, useSelector } from 'react-redux'
+import { decrement, increment, reset } from './REDUX/counterSlice'
+
 
 const App = () => {
+  const dispatch = useDispatch()
 
-  const name = UseInput('');
+  const count = useSelector((state)=> state.counter.count)
   return (
-    <div>
-      <input type='text' {...name}/>
-      <p>{name.value}</p>
+    <div >
+      <p>COUNTER APP</p>
+      <br/>
+      <h1>{count}</h1>
+      <button onClick={()=> dispatch(increment())}>INCREMENT</button>
+      <button onClick={()=> dispatch(decrement())}>DECREMENT</button>
+      <button onClick={()=> dispatch(reset())}>RESET</button>
     </div>
   )
 }
