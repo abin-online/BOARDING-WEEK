@@ -85,3 +85,7 @@ button:focus-visible {
     background: linear-gradient(135deg, #0056b3, #004494);
   }
 } */
+
+
+
+@tailwind utilities;

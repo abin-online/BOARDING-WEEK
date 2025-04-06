@@ -1111,25 +1111,113 @@
 // export default App
 
 
+// import { useDispatch, useSelector } from 'react-redux'
+// import { increment, decrement, reset } from './app/counterSlice';
 
-import React from 'react'
+// const App = () => {
+//   const dispatch = useDispatch();
+//   const count = useSelector((state) => state.count);
+
+//   return (
+//     <div>
+//       <h1>{count}</h1>
+//       <button onClick={() => dispatch(increment())}>INCREMENT</button>
+//       <button onClick={() => dispatch(decrement())}>DECREMENT</button>
+//       <button onClick={() => dispatch(reset())}>RESET</button>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+//TIMER UPTO  0 -> 10 -> 0
+
+// import React, { useEffect } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { tick } from './tenTimer/tenCounter';
+
+// const App = () => {
+
+//   const dispatch = useDispatch()
+//   const count = useSelector((state) => state.counter.count);
+
+//   useEffect(() => {
+//     const timer = setInterval(() => {
+//         dispatch(tick())
+//     }, 1000);
+
+//     return ()=> clearInterval(timer)
+//   }, [dispatch])
+
+
+//   return (
+//     <div>
+//       <h1>{count}</h1>
+//     </div>
+//   )
+// }
+
+// export default App
+
+// import React, { useEffect } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { fetchUser } from './AsyncThunk/userSlice'
+// import { fetchPhoto } from './AsyncThunk/photoSlice';
+// import axios from 'axios';
+
+// const App = () => {
+//   const dispatch = useDispatch();
+
+//   const { user, loading, error } = useSelector((state) => state.photoSlice);
+
+//   useEffect(() => {
+//     //dispatch(fetchPhoto());
+
+//     const fetchPhoto = async()=> {
+//       const response = await axios.get(`https://jsonplaceholder.typicode.com/photos`)
+//       const data = response
+//       const randomIndex = Math.floor(Math.random() * 10000) % data.length;
+//       console.log(data)
+//       //return data[randomIndex]
+//   }   
+
+//   fetchPhoto()
+//   }, [dispatch]);
+
+//   return (
+//   <>
+//   </>
+//   )
+// }
+
+// export default App
+
+
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment, reset } from './REDUX/counterSlice'
-
+import { fetchPhoto } from './AsyncThunk/photoSlice';
 
 const App = () => {
-  const dispatch = useDispatch()
 
-  const count = useSelector((state)=> state.counter.count)
+  const dispatch = useDispatch();
+  const { photo, error, loading } = useSelector((state) => state.photo)
+
+  useEffect(() => {
+    dispatch(fetchPhoto())
+  }, [dispatch])
+
   return (
-    <div >
-      <p>COUNTER APP</p>
-      <br/>
-      <h1>{count}</h1>
-      <button onClick={()=> dispatch(increment())}>INCREMENT</button>
-      <button onClick={()=> dispatch(decrement())}>DECREMENT</button>
-      <button onClick={()=> dispatch(reset())}>RESET</button>
-    </div>
+    <>
+      {loading ? <p>LOADING</p> : <div className="photo-card">
+        <h3>{photo?.title}</h3>
+        <img src={photo?.url} alt={photo?.title} width="300" />
+        <p><strong>Album ID:</strong> {photo?.albumId}</p>
+        <p><strong>Photo ID:</strong> {photo?.id}</p>
+      </div>}
+      {error && <p>{error}</p>}
+    </>
+
   )
 }
 
