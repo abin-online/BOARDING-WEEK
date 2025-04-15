@@ -1194,30 +1194,234 @@
 // export default App
 
 
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchPhoto } from './AsyncThunk/photoSlice';
+// import React, { useEffect } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { fetchPhoto } from './AsyncThunk/photoSlice';
+
+// const App = () => {
+
+//   const dispatch = useDispatch();
+//   const { photo, error, loading } = useSelector((state) => state.photo)
+
+//   useEffect(() => {
+//     dispatch(fetchPhoto())
+//   }, [dispatch])
+
+//   return (
+//     <>
+//       {loading ? <p>LOADING</p> : <div className="photo-card">
+//         <h3>{photo?.title}</h3>
+//         <img src={photo?.url} alt={photo?.title} width="300" />
+//         <p><strong>Album ID:</strong> {photo?.albumId}</p>
+//         <p><strong>Photo ID:</strong> {photo?.id}</p>
+//       </div>}
+//       {error && <p>{error}</p>}
+//     </>
+
+//   )
+// }
+
+// export default App
+
+
+//CONTEXT
+
+// import React, { useState } from 'react'
+// import CONTEXT from './newContext/Context'
+// import BOX from './newContext/BOX'
+
+// const App = () => {
+//   const [value, setValue] = useState(false)
+//   return (
+//     <CONTEXT.Provider value={value}>
+//         <BOX/>
+//         <button onClick={()=> setValue(prev => !prev)}>TOGGLE</button>
+//     </CONTEXT.Provider>
+//   )
+// }
+
+// export default App
+
+
+//counter using todo app
+// import React, { useReducer } from 'react'
+
+// const App = () => {
+
+//   const reducer = (state, action) => {
+//     switch (action.type) {
+//       case 'INCREMENT': return {
+//         count: state.count + 1
+//       }
+
+//       case 'DECREMENT': return {
+//         count: state.count - 1
+//       }
+
+//       case 'RESET': return {
+//         count: 0
+//       }
+
+//       default: return {
+//         count: 1
+//       }
+//     }
+//   }
+
+//   const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+//   return (
+//     <>
+//       <h1>{state.count}</h1>
+//       <button onClick={() => dispatch({ type: 'INCREMENT' })}>INCREMENT</button>
+//       <button onClick={() => dispatch({ type: 'RESET' })}>RESET</button>
+//       <button onClick={() => dispatch({ type: 'DECREMENT' })}>DECREMENT</button>
+//     </>
+//   )
+// }
+
+// export default App
+
+// import React, { useReducer, useState } from 'react'
+
+// const App = () => {
+
+//   const reducer = (state, action) => {
+//     switch (action.type) {
+//       case 'ADD_TODO':
+//         return [...state,
+//         {
+//           id: Date.now(),
+//           text: action.payload,
+//           completed: false
+//         }
+//         ]
+//       case 'DELETE_TODO':
+//         return state.filter(todo => todo.id !== action.payload)
+
+//       case 'TOGGLE':
+//         return state.map((item) => {
+//           return item.id == action.payload ? { ...item, completed: !item.completed } : item
+//         })
+
+//       case 'CLEAR': return []
+//       default: return state
+//     }
+//   }
+
+//   const [todos, dispatch] = useReducer(reducer, []);
+//   const [input, setInput] = useState('');
+
+
+//   const addTodo = () => {
+//     if (input.trim()) {
+//       dispatch({ type: 'ADD_TODO', payload: input })
+//       setInput('')
+//     }
+//   }
+
+//   const toggleTask = (item_id) => {
+//     console.log('id ', item_id)
+//     dispatch({ type: 'TOGGLE', payload: item_id })
+//   }
+
+//   const deleteItem = (item_id) => {
+//     dispatch({ type: 'DELETE_TODO', payload: item_id })
+//   }
+
+//   const clear = () => {
+//     dispatch({ type: 'CLEAR' })
+//   }
+//   return (
+//     <div>
+//       <input type='text' value={input} onChange={(e) => setInput(e.target.value)} />;
+//       <button onClick={addTodo}>ADD TODO</button>
+//       <br />
+//       <button onClick={clear}>CLEAR</button>
+//       <br />
+//       {todos.map((item, index) => {
+//         return <p key={item?.id?.toString()}>{index + 1} {item?.text}
+//           <span>
+//             <button onClick={() => deleteItem(item?.id)}>DELETE</button>
+//             <input type='checkbox' value={item?.completed} onChange={() => toggleTask(item?.id)} />
+//           </span>
+//         </p>
+//       })}
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+//ref example
+
+// import React, { useRef } from 'react'
+
+// const App = () => {
+//   const inputRef = useRef(null);
+
+//   const focusInput = ()=> {
+//     console.log(inputRef.current.value)
+//     inputRef.current.focus()
+//   }
+
+//   return (
+//     <div>
+//       <input ref={inputRef} type='text'/>
+//       <button onClick={focusInput}>FOCUS</button>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React, { forwardRef, useRef } from 'react'
+
+
+// const Child = forwardRef((props, ref) => {
+//   return (
+//     <div>
+//       <input ref={ref}  {...props} />
+//     </div>
+//   )
+// });
+
+
+
+// const App = () => {
+
+//   const inputRef = useRef();
+
+//   return (
+//     <div>
+//       <Child ref={inputRef} placeholder='Type cheyyada'/>
+//     </div>
+//   )
+// }
+
+// export default App
+
+import React, { useMemo, useState } from 'react'
 
 const App = () => {
 
-  const dispatch = useDispatch();
-  const { photo, error, loading } = useSelector((state) => state.photo)
-
-  useEffect(() => {
-    dispatch(fetchPhoto())
-  }, [dispatch])
+const [overs, setOvers] = useState(0)
+const [ball, setBall] = useState(0)
+const [runs, setRuns] = useState(0)
+const runRate = useMemo(()=> {
+    const decimal = parseFloat(ball / 6);
+    const oversToDivide = parseInt(overs) + parseFloat(decimal);
+    return runs / oversToDivide
+},[overs, ball, runs]);
 
   return (
-    <>
-      {loading ? <p>LOADING</p> : <div className="photo-card">
-        <h3>{photo?.title}</h3>
-        <img src={photo?.url} alt={photo?.title} width="300" />
-        <p><strong>Album ID:</strong> {photo?.albumId}</p>
-        <p><strong>Photo ID:</strong> {photo?.id}</p>
-      </div>}
-      {error && <p>{error}</p>}
-    </>
-
+    <div>
+      <p>Enter runs scored </p> <input type='text' onChange={(e)=> setRuns(e.target.value)}/> 
+      <p>Enter the over completed  </p> <input type='text'value={overs} style={{width: '20px'}} onChange={(e)=> setOvers(e.target.value)}/>.<input type='text' style={{width: '20px'}} value={ball} onChange={(e)=> setBall(e.target.value)}/> 
+      <h6>{runRate}</h6>
+    </div>
   )
 }
 

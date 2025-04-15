@@ -111,7 +111,7 @@ class LinkedList {
     }
 
     removeIndex(index) {
-        if (index < 0 || index >= this.size) {
+        if (index < 0 || index >= this.size)   {
             console.log('Cant remove')
             return
         }
