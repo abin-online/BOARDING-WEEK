@@ -1403,24 +1403,40 @@
 
 // export default App
 
-import React, { useMemo, useState } from 'react'
+// import React, { useMemo, useState } from 'react'
+
+// const App = () => {
+
+// const [overs, setOvers] = useState(0)
+// const [ball, setBall] = useState(0)
+// const [runs, setRuns] = useState(0)
+// const runRate = useMemo(()=> {
+//     const decimal = parseFloat(ball / 6);
+//     const oversToDivide = parseInt(overs) + parseFloat(decimal);
+//     return runs / oversToDivide
+// },[overs, ball, runs]);
+
+//   return (
+//     <div>
+//       <p>Enter runs scored </p> <input type='text' onChange={(e)=> setRuns(e.target.value)}/> 
+//       <p>Enter the over completed  </p> <input type='text'value={overs} style={{width: '20px'}} onChange={(e)=> setOvers(e.target.value)}/>.<input type='text' style={{width: '20px'}} value={ball} onChange={(e)=> setBall(e.target.value)}/> 
+//       <h6>{runRate}</h6>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+import React from 'react'
+import ThrottleScrollExample from './Throttling/Scroll'
+import Todo from './TODO/Todo'
 
 const App = () => {
-
-const [overs, setOvers] = useState(0)
-const [ball, setBall] = useState(0)
-const [runs, setRuns] = useState(0)
-const runRate = useMemo(()=> {
-    const decimal = parseFloat(ball / 6);
-    const oversToDivide = parseInt(overs) + parseFloat(decimal);
-    return runs / oversToDivide
-},[overs, ball, runs]);
-
   return (
     <div>
-      <p>Enter runs scored </p> <input type='text' onChange={(e)=> setRuns(e.target.value)}/> 
-      <p>Enter the over completed  </p> <input type='text'value={overs} style={{width: '20px'}} onChange={(e)=> setOvers(e.target.value)}/>.<input type='text' style={{width: '20px'}} value={ball} onChange={(e)=> setBall(e.target.value)}/> 
-      <h6>{runRate}</h6>
+      {/* <ThrottleScrollExample/> */}
+      <Todo/>
     </div>
   )
 }
