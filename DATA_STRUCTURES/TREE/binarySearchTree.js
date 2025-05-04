@@ -192,4 +192,28 @@ class BinarySearchTree {
         return this.isBalanced(root.left) && this.isBalanced(root.right);
     }
 
+    secondMax(root = this.root){
+        if((!root) || (!root.left && !root.right)){
+            return null
+        }
+
+        let prev = null
+
+        const findLargest = (node)=> {
+            if(!node.right) {
+                return node
+            }
+            prev = node
+            return findLargest(node.right)
+        }
+
+        let largest = findLargest(root)
+
+        if(largest.left) {
+            return findLargest(largest.left).value
+        }
+
+        return prev ? prev.value : null
+    }
+
 }

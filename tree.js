@@ -207,7 +207,7 @@ class Tree {
                 return null
             }
 
-            let middle = Math.floor((left + right)/2);
+            let middle = Math.floor((left + right) / 2);
             const root = new Node(nums[middle]);
             root.left = buildBST(left, middle - 1);
             root.right = buildBST(middle + 1, right)
@@ -216,35 +216,35 @@ class Tree {
         }
 
         return buildBST(0, nums.length - 1);
-        
+
     }
 
     largest(root = this.root) {
-        while(!root.right) {
+        while (!root.right) {
             root = root.right
         }
 
         return root.value
     }
 
-    secondLargest(root = this.root){
-        if((!root) || (!root.left && !root.right)) {
+    secondLargest(root = this.root) {
+        if ((!root) || (!root.left && !root.right)) {
             return null
         }
 
         let prev = null;
 
-        const findLargest = ()=> {
-            if(!root.right){
+        const findLargest = () => {
+            if (!root.right) {
                 return root
             }
-                prev = root;
-                return largest(root.right);
+            prev = root;
+            return largest(root.right);
         }
 
         let largest = findLargest(root);
 
-        if(largest.left){
+        if (largest.left) {
             return findLargest(largest.left).value
         }
 
@@ -260,7 +260,7 @@ tree.insert(5)
 tree.insert(15)
 tree.insert(7)
 
-console.log('largest',tree.largest())
+console.log('largest', tree.largest())
 
 
 //tree.preOrder()

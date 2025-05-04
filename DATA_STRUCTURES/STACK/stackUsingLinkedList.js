@@ -60,4 +60,17 @@ class Stack {
         }
         return arr
     }
+
+    rver() {
+        let prev = null
+        let curr = this.top
+        let next 
+        while(curr) {
+            next = curr.next;
+            curr.next = prev
+            prev = curr
+            curr = next
+        }
+        this.top = prev
+    }
 }

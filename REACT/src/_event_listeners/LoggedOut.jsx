@@ -15,7 +15,7 @@ const LoggedOut = () => {
         const timer = setInterval(() => {
             setTime((prev) => prev + 1)
         }, 1000)
-
+ 
         document.addEventListener('mousemove', helperFunction);
         document.addEventListener('keydown', helperFunction);
 

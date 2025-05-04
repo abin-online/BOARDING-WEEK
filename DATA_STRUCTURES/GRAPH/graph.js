@@ -107,6 +107,33 @@ class Graph {
 
         return false
     }
+
+    hasCyclec() {
+        const visited = {}
+
+        const dfs = (node, parent) => {
+            visited[node] = true
+            for(let neighbour of this.adjacentList[node]){
+                if(!visited[neighbour]){
+                    if(dfs(neighbour, node)){
+                        return true
+                    }
+                }else if(neighbour != parent) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        for(let vertex in this.adjacentList){
+            if(!visited[vertex]){
+                if(dfs(vertex, null)){
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }
 
 const graph = new Graph()

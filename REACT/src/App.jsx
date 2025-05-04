@@ -1428,15 +1428,95 @@
 // export default App
 
 
+// import React from 'react'
+// import ThrottleScrollExample from './Throttling/Scroll'
+// import Todo from './TODO/Todo'
+// import Reducer from './COUNTER/Reducer'
+
+// const App = () => {
+//   return (
+//     <div>
+//       {/* <ThrottleScrollExample/> */}
+//       {/* <Todo/> */}
+//       <Reducer/>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React, { useState } from 'react'
+// import Context from './SIBBLINGS/Contex'
+// import Component1 from './SIBBLINGS/Component1'
+// import Component2 from './SIBBLINGS/Component2'
+
+// const App = () => {
+//   const [data, setData] = useState()
+//   return (
+//     <Context.Provider value={data}>
+//       <Component1/>
+//       <Component2/>
+//     </Context.Provider>
+//   )
+// }
+
+// export default App
+
+// import React from 'react'
+// import Head from './HEAD/Head'
+
+// const App = () => {
+
+//   return (
+//     <div>
+//           <Head/>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// import React, { Suspense } from 'react'
+// import Tabs from './MACHINETASKS/Tabs'
+// import Pagination from './MACHINETASKS/Pagination'
+// import Products from './MACHINETASKS/Products'
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+// import Fallback from './MACHINETASKS/Fallback'
+// import AutoComplete from './MACHINETASKS/AutoComplete'
+// import Password from './MACHINETASKS/Password'
+// // import ProductDetail from './MACHINETASKS/ProductDetails'
+// const ProductDetail = React.lazy(()=> import('./MACHINETASKS/ProductDetails'))
+// const App = () => {
+//   return (
+// <Router>
+//     <Suspense fallback={<Fallback/>}>
+//   <Routes>
+//     <Route path='/' element={<Products/>}/>
+//     <Route path='/otp' element={<Password/>}/>   
+
+//     <Route path='/shop' element={<AutoComplete/>}/>   
+//     <Route path="/product/:id" element={<ProductDetail/>} />
+//   </Routes>
+//     </Suspense>
+// </Router>
+//   )
+// }
+
+// export default App
+
+
+
 import React from 'react'
-import ThrottleScrollExample from './Throttling/Scroll'
-import Todo from './TODO/Todo'
+import Password from './MACHINETASKS/Password'
+import Signup from './MACHINETASKS/Signup'
 
 const App = () => {
   return (
     <div>
-      {/* <ThrottleScrollExample/> */}
-      <Todo/>
+      {/* <Password/> */}
+      <Signup/>
     </div>
   )
 }
