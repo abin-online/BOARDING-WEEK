@@ -1511,12 +1511,14 @@
 import React from 'react'
 import Password from './MACHINETASKS/Password'
 import Signup from './MACHINETASKS/Signup'
+import BSTVisualizer from './DSA/Component/BSTComponent'
 
 const App = () => {
   return (
     <div>
       {/* <Password/> */}
-      <Signup/>
+      {/* <Signup/> */}
+      <BSTVisualizer/>
     </div>
   )
 }
