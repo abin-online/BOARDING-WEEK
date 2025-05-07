@@ -1512,13 +1512,18 @@ import React from 'react'
 import Password from './MACHINETASKS/Password'
 import Signup from './MACHINETASKS/Signup'
 import BSTVisualizer from './DSA/Component/BSTComponent'
+import ProgressBar from './MACHINETASKS/PROGRESSBAR/ProgressBar'
+import Head from './MACHINETASKS/Head'
 
 const App = () => {
   return (
     <div>
       {/* <Password/> */}
       {/* <Signup/> */}
-      <BSTVisualizer/>
+      {/* <BSTVisualizer/> */}
+
+      {/* <ProgressBar /> */}
+      <Head/>
     </div>
   )
 }
