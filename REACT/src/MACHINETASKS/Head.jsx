@@ -12,8 +12,6 @@ const Head = () => {
 
         } else {
             // console.log(array)
-
-
             // setArray(newArray)
             setArray((prev) => {
                 const newArray = [...prev];
@@ -39,21 +37,20 @@ const Head = () => {
             </div>
             {/* <h1>{value}</h1> */}
             <div className='container'>
-            {array.map((item, index) => {
-                return (
-                    <div key={index} className='item'>
-                        {item.map((sub, index) => {
-                            return (
-                                <div key={index} className='sub'>
-                                    {sub}
-                                </div>
-                            )
-                        })}
-                    </div>
-                )
-            })}
+                {array.map((item, index) => {
+                    return (
+                        <div key={index} className='item'>
+                            {item.map((sub, index) => {
+                                return (
+                                    <div key={index} className='sub'>
+                                        {sub}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    )
+                })}
             </div>
-
         </div>
     )
 }

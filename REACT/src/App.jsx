@@ -1514,6 +1514,8 @@ import Signup from './MACHINETASKS/Signup'
 import BSTVisualizer from './DSA/Component/BSTComponent'
 import ProgressBar from './MACHINETASKS/PROGRESSBAR/ProgressBar'
 import Head from './MACHINETASKS/Head'
+import Counter from './COUNT/Counter'
+import Paragraph from './COUNT/HOC/Paragraph'
 
 const App = () => {
   return (
@@ -1523,7 +1525,9 @@ const App = () => {
       {/* <BSTVisualizer/> */}
 
       {/* <ProgressBar /> */}
-      <Head/>
+      {/* <Head/> */}
+      <Counter/>
+      <Paragraph/>
     </div>
   )
 }
