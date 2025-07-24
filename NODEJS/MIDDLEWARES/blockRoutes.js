@@ -1,27 +1,38 @@
 const express = require('express');
 
+
 const app = express()
 
 
-const blockRoute = (req, res, next) => {
-    try {
-        if (req.url == '/block') {
-            return res.status(403).json({ message: 'blocked' })
-        } 
-            next()
-    } catch (error) {
-
+const blockGET = (req, res, next) => {
+    if (req.method === 'GET') {
+        res.status(403).json({ message: 'access blocked ' })
+        return
     }
+    next()
 }
 
-app.use(blockRoute)
 
-app.get('/block', (req, res) => {
+// app.use(blockGET);
+
+app.get('/user', async (req, res) => {
     try {
-        res.send('Route accessed successfully')
+        res.send('Hi user')
     } catch (error) {
-        console.log(error)
+        console.log('Error occured', error)
+    }
+}
+)
+
+app.get('/abin' , async (req, res)=> {
+    try {
+        res.send(req.originalUrl.split('/')[1])
+    } catch (error) {
+        
     }
 })
 
-app.listen(3000, () => console.log('connected'))
+
+app.listen(3000, ()=> {
+    console.log('app is runnning')
+})

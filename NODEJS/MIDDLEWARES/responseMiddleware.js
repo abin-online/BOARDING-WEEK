@@ -16,8 +16,8 @@ function encrypt(text) {
 
 const encryptResponse = (req, res, next) => {
     const originalSend = res.send;
-    res.send = function(data) {
-        if(typeof data === 'object') {
+    res.send = function (data) {
+        if (typeof data === 'object') {
             data = JSON.stringify(data);
         }
 
@@ -30,10 +30,10 @@ const encryptResponse = (req, res, next) => {
 
 app.use(encryptResponse)
 
-app.get('/', (req, res)=> {
-    res.send({message: 'RESPONSE'})
+app.get('/', (req, res) => {
+    res.send({ message: 'RESPONSE' })
 })
 
-app.listen(3000, ()=> {
+app.listen(3000, () => {
     console.log('Connected !')
 })
